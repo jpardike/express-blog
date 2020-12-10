@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Express Blog</title>
-</head>
-<body>
-  
-  <header>
-    <h1>Show Page for <%= author.name %></h1>
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/authors">Author Index</a>
-        </li>
-        <li>
-          <a href="/authors/new">Add New Author</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Express Blog</title>
+  </head>
+  <body>
+    <header><%- include('../partials/navbar') %></header>
 
-  <main>
-    <section>
-      <h2>Author Attributes:</h2>
-      <ul>
-        <li>Name: <%= author.name %></li>
-      </ul>
-    </section>
-    <section>
-      <a href="/authors/<%= author._id %>/edit">
-        <button>Edit</button>
-      </a>
+    <main>
+      <section>
+        <h2>Author Attributes:</h2>
+        <ul>
+          <li>Name: <%= author.name %></li>
+        </ul>
+        <section>
+          <h3>Articles:</h3>
+          <ul>
+            <% for (let i = 0; i < author.articles.length; i++) { %>
+            <li>
+              <a href="/articles/<%= author.articles[i].id %>"
+                ><%= author.articles[i].title %></a
+              >
+            </li>
+            <% } %>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <a href="/authors/<%= author._id %>/edit">
+          <button>Edit</button>
+        </a>
 
-      <form action="/authors/<%= author._id %>?_method=DELETE" method="post">
-        <input type="submit" value="Delete Author"/>
-      </form>
-    </section>
-  </main>
-
-</body>
+        <form action="/authors/<%= author._id %>?_method=DELETE" method="post">
+          <input type="submit" value="Delete Author" />
+        </form>
+      </section>
+    </main>
+  </body>
 </html>

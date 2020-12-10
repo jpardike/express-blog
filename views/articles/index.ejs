@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Articles</title>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <h1>All Articles</h1>
+  
+  
+  <ul>
+    <% allArticles.forEach((article, index) => { %>
+      <li>
+        <a href="/articles/<%=article.id%>"><h2><%= index +1 %>. <%= article.title %></h2></a>
+        <p><%= article.body %></p>
+      </li>
+    <% }) %>  
+  </ul>
+</body>
+</html>

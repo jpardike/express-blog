@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Article</title>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <h1>Show Article</h1>
+
+  <h2><%= article.title %></h2>
+
+  <p>by: <a href="/authors/<%= author.id %>"><%= author.name %></a></p>
+
+  <p><%= article.body %></p>
+
+  <section>
+    <a href="/articles/<%=article.id%>/edit">
+      <button>Edit</button>
+    </a>
+  </section>
+
+  <section>
+    <form action="/articles/<%= article.id %>?_method=DELETE" method="post">
+    <input type="submit" value="Delete" />
+    </form>
+  </section>
+</body>
+</html>

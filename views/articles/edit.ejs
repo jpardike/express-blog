@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Article</title>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <h1>Edit Article</h1>
+  
+  <form action="/articles/<%= article.id %>?_method=PUT" method="post">
+    <select name="authorId">
+      <% for (let i = 0; i < authors.length; i++) { %>
+        <option 
+          value="<%= authors[i]._id %>"
+          <% if (authors[i].id === articleAuthor.id) { %>
+            selected
+          <% } %>
+          >
+          <%= authors[i].name %>
+        </option>
+      <% } %>
+    </select><br />
+    <input type="text" name="title" value="<%=article.title%>" /><br />
+    <input type="text" name="body" value="<%=article.body%>" /><br />
+    <input type="submit" value="Update Article" />
+  </form>
+
+</body>
+</html>

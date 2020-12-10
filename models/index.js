@@ -18,4 +18,5 @@ mongoose.connection.on('error', (err) => {
 
 module.exports = {
   Author: require('./Author'),
+  Article: require('./Article')
 };

@@ -4,6 +4,7 @@
 // Custom Modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const methodOverride = require('method-override');
 const app = express();
 // DOTENV
@@ -21,6 +22,8 @@ const ctrl = require('./controllers');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// Logging middleware
+app.use(morgan('tiny'));
 
 // Method Override
 app.use(methodOverride('_method'));
@@ -34,6 +37,9 @@ app.get('/', (req, res) => {
 
 // Authors Routes
 app.use('/authors', ctrl.authors);
+
+// Articles Routes
+app.use('/articles', ctrl.articles);
 
 // 404 Route
 app.use('*', (req, res) => {
